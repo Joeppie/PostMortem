@@ -39,7 +39,7 @@ PostMortem.mailHeader| The title of the mail received by the victim.
 PostMortem.publicBroadcast| the message that all online players see if the destruction was unlawful.
 PostMortem.killerWarning|the warning the killer receives if the destruction was unlawful.
 PostMortem.victimMessage|the message the victim receives if the destruction was unlawful.
-PostMortem.reportTemplate = The total detailed report that is printed to the console and also mailed to the victim for their reference.
+PostMortem.reportTemplate|The total detailed report that is printed to the console and also mailed to the victim for their reference.
 
 
 # example output:
