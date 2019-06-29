@@ -29,6 +29,18 @@ Creates a report indicating the destruction of a ship or station took place that
 
 There are several settings which can be changed in the PostMortem object.
 
+|Setting|description|
+|---------------------------------------------|----------------------------------------------------------------------------------------|
+PostMortem.maximumStandingForLawfulDestruction | The maximum standing which you can have before postmortem announces the violation.
+PostMortem.minimumBan|PostMortem does not ban  it just uses this to calculate a banLength suggestion, the defaults match the rules on DivineReapers.
+PostMortem.resourcesPerDayofBan| This many credits or resources results in a ban duration (banLength) of that many days.
+PostMortem.mailSender| The sender reported in the mail the victim receives.
+PostMortem.mailHeader| The title of the mail received by the victim.
+PostMortem.publicBroadcast| the message that all online players see if the destruction was unlawful.
+PostMortem.killerWarning|the warning the killer receives if the destruction was unlawful.
+PostMortem.victimMessage|the message the victim receives if the destruction was unlawful.
+PostMortem.reportTemplate = The total detailed report that is printed to the console and also mailed to the victim for their reference.
+
 
 # example output:
 
