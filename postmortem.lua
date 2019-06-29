@@ -123,7 +123,7 @@ PostMortem.reportTemplate = [[--PostMortem--
 		local standing = killer:getRelations(faction.index);
 		
 		local allowedString  = "Looks like it.";
-		if (killer.isPlayer or killer.isAlliance) and (standing > PostMortem.maximumStandingForLawfulDestruction) and (killer.index == faction.index) then
+		if (killer.isPlayer or killer.isAlliance) and (standing > PostMortem.maximumStandingForLawfulDestruction) and (killer.index ~= faction.index) then
 			allowedString = "Definitely not.";
 		end
 		
@@ -140,7 +140,7 @@ PostMortem.reportTemplate = [[--PostMortem--
 			banLength= banLength
 			}
 
-		if (killer.isPlayer or killer.isAlliance) and (standing > PostMortem.maximumStandingForLawfulDestruction) and (killer.index == faction.index)    then
+		if (killer.isPlayer or killer.isAlliance) and (standing > PostMortem.maximumStandingForLawfulDestruction) and (killer.index ~= faction.index)    then
 			report = report .. ([[
 			 The relations of the killing faction was not hostile or worse; it was ${standing}.
 			]] % {standing=standing}  )
