@@ -57,19 +57,18 @@ PostMortem.reportTemplate = [[--PostMortem--
 	function PostMortem.onDestroyed(index, lastDamageInflictor)
 		
 
-		local faction = Faction()
+		local faction = Faction() --Faction of entity that was destroyed.
 		if not faction then return end
 
 		if faction.isPlayer or faction.isAlliance then
-			local ship = Entity();
 			local crimeSceneSector = Sector();
-			PostMortem.autopsy(ship,faction,killerFactionId,crimeSceneSector);
+			PostMortem.autopsy(Entity(),faction,lastDamageInflictor,crimeSceneSector);
 		end
 	end
 		
 			
 	--Perform an autopsy on the 
-	function PostMortem.autopsy(ship,faction,killerFactionId,crimeSceneSector)
+	function PostMortem.autopsy(ship,faction,killerEntityId,crimeSceneSector)
 	
 	
 	--Create variables to store the location of where this happened.
@@ -78,10 +77,7 @@ PostMortem.reportTemplate = [[--PostMortem--
 		
 		local entityType = nil;
 		if ship.isShip then entityType = "ship"; elseif(ship.isStation) then entityType = "station"; else entityType = "unknown entity"; end
-		
-		  --The event fires from a context on the entity which was destroyed.
-		local destroyer = Faction(lastDamageInflictor)
-		
+				
 		local damagers = "";    
 		for i,factionIndex in pairs({ship:getDamageContributors()}) do
 			local offendingFaction = Faction(factionIndex);
@@ -119,7 +115,7 @@ PostMortem.reportTemplate = [[--PostMortem--
 		end
 		
 		banLength = math.ceil(banLength) --round it up.
-		local killer = Faction(killerFactionId);
+		local killer =  Faction(Entity(killerEntityId).factionIndex);
 		local standing = killer:getRelations(faction.index);
 		
 		local allowedString  = "Looks like it.";
@@ -134,7 +130,7 @@ PostMortem.reportTemplate = [[--PostMortem--
 			shipShieldMaxDurability = ship.shieldMaxDurability,
 			shipFirePower = ship.firePower,
 			priceDump = priceDump,
-			destroyerName = destroyer.name,
+			destroyerName = killer.name,
 			damagers = damagers,
 			allowed = allowedString,
 			banLength= banLength
